@@ -1,0 +1,11 @@
+.img-dummy {
+	display: block;
+	width:100%;
+	height:0;
+	background-color: $grey-lighter;
+	padding-bottom:100%;
+
+	&.artist {
+		padding-bottom:100%*(450/736);
+	}
+}

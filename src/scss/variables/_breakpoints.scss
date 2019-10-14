@@ -1,0 +1,17 @@
+$phoneLandscape: (max-device-width 812px) (orientation landscape);
+
+$retina: min-resolution 1.25dppx;
+
+$tablet: 768px !default;
+
+$retinaTablet: $retina $tablet;
+
+$desktop: 1024px !default;
+
+$widescreen: 1152px !default;
+
+$widescreen-enabled: true !default;
+
+$fullhd: 1440px !default;
+
+$fullhd-enabled: true !default;

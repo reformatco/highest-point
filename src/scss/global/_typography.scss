@@ -1,0 +1,35 @@
+@import url("//hello.myfonts.net/count/386fef");
+
+@include font-face('HPIcons','../webfonts/HPIcons');
+@include font-face('BelweStd-Light','../webfonts/386FEF_0_0');
+@include font-face('BelweStd-Medium','../webfonts/386FEF_1_0');
+@include font-face('BelweStd-Condensed','../webfonts/386FEF_2_0');
+
+@include headings;
+@include paragraphs;
+
+.title {
+	@include fs($font-xl-s);
+	@include breakpoint($tablet){
+		@include fs($font-xl);
+	}
+	font-family:$font-condensed;
+	letter-spacing:-.01em;
+}
+
+.subtitle,
+.listings-header {
+	@include fs($font-xl-s);
+	@include breakpoint($tablet){
+		@include fs($font-xl);
+	}
+	font-family:$font-condensed;
+}
+
+.content-block,
+.article-content {
+
+	/* set in mixins */
+	@include body-styles;
+
+}

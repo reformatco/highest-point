@@ -1,0 +1,52 @@
+.component-social {
+
+	a {
+		margin:0 .25rem;
+		&.fa-facebook-f {
+			transform:scale(.8);
+		}
+		&.fa-youtube {
+			transform:scale(1.1);
+		}
+		transition:all .25s;
+		&:hover {
+			color:$yellow;
+		}
+	}
+
+	.icons {
+		display:flex;
+		justify-content:center;
+	}
+}
+
+.social-icons {
+	&.is-sml {
+		@include fs($font-s);
+		margin:0;
+		.component-social {
+			a {
+				margin:0 .25rem;
+			}
+		}
+	}
+	&.is-med {
+		@include fs($font-m);
+		margin:0;
+		.component-social {
+			a {
+				margin:0 .5rem;
+			}
+		}
+	}
+	&.is-lrg {
+		@include fs($font-l);
+		margin:0;
+		.component-social {
+			a {
+				margin:0 .5rem;
+			}
+		}
+	}
+	
+}

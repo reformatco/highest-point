@@ -1,0 +1,230 @@
+.module-lineup {
+
+}
+
+.poster {
+	display:flex;
+	justify-content: center;
+	@include breakpoint($tablet){
+
+	}
+}
+
+.poster-wrap {
+	width:span(8);
+	@include breakpoint($tablet){
+		width:span(5);
+	}
+}
+
+.bg-yellow a.poster-download {
+	display:block;
+	position:relative;
+	box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
+	transition:all .3s $easing;
+
+	&:hover,
+	&:focus {
+		// transform:scale(1.05);
+	}
+
+	img {
+		position:relative;
+		display: block;
+		z-index:1;
+	}
+
+	&:before,
+	&:after {
+		transition:all .3s $easing;
+		opacity:0;
+		visibility: hidden;
+	}
+
+	&:hover,
+	&:focus {
+		&:before,
+		&:after {
+			opacity:1;
+			visibility: visible;
+		}
+	}
+
+
+	&:before {
+		content:"Download Poster";
+		display: flex;
+		align-items:center;
+		justify-content: center;
+		position:absolute;
+		z-index:2;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background-color: transparentize($black, 0.25);
+		@include fs($font-m);
+		font-family:$font-head;
+		color:$white;
+		cursor:pointer;
+
+	}
+	&:after {
+		content:"";
+		display: block;
+		position:absolute;
+		width:rhythm(2);
+		height: rhythm(2);
+		background-image: url(../img/download.svg);
+		z-index: 3;
+		left:50%;
+		top:50%;
+		transform:translate(-50%,50%);
+		cursor:pointer;
+	}
+}
+
+.module-lineup.bg-yellow {
+
+}
+
+.lineup {
+	@include clearfix;
+
+	margin-top:rhythm(2);
+
+	@include breakpoint($tablet){
+		@include span(11);
+		@include pre(1);
+		margin-top:rhythm(4);
+	}
+}
+
+.listings {
+	@include breakpoint($tablet){
+		display:flex;
+		justify-content:space-between;
+		position:relative;
+		min-height:rem-calc(300px);
+	}
+}
+
+.listings-header {
+	// styles in global/_typography
+	@include breakpoint($tablet){
+		width:span(2 of 11);
+	}
+	h2 {
+		@include breakpoint($tablet){
+			position:absolute;
+		}
+		display: inline-block;
+		@include breakpoint($tablet){
+			transform-origin:top left;
+			transform:rotate(-90deg) translateX(-100%);
+		}
+	}
+}
+
+.listings-column {
+	margin-bottom:rhythm(2);
+	@include breakpoint($tablet){
+		width:span(3 of 11);
+	}
+}
+
+.listings-column-header {
+	@include fs($font-l);
+	font-family:$font-condensed;
+}
+
+.listings-stage {
+	h4 {
+		@include fs($font-m);
+		margin-bottom:rhythm(.5,$font-m);
+		font-family:$font-condensed;
+		color:$green;
+	}
+
+	margin-bottom:rhythm(2);
+
+	.listings-before,
+	.listings-after {
+		p {
+      font-family:$font-light;
+      @include fs($font-m);
+      margin: 0;
+      line-height:1.2;
+      @include breakpoint($tablet){
+        @include fs($font-m-s);
+        margin: 0;
+        line-height:1.2;
+      }
+      @include breakpoint($desktop){
+        @include fs($font-m);
+        margin: 0;
+        line-height:1.2;
+      }
+    }
+	}
+}
+
+.listings-list {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+
+	li {
+		@include fs($font-m);
+		margin: 0;
+		// margin-bottom:rhythm(.5,$font-m);
+		line-height:1.2;
+		@include breakpoint($tablet){
+			@include fs($font-m-s);
+			margin: 0;
+			// margin-bottom:rhythm(.5,$font-m-s);
+			line-height:1.2;
+		}
+		@include breakpoint($desktop){
+			@include fs($font-m);
+			margin: 0;
+			// margin-bottom:rhythm(.5,$font-m);
+			line-height:1.2;
+		}
+
+		&:last-of-type {
+			margin-bottom:0;
+		}
+		a {
+			font-family:$font-light;
+			@include link-underline($yellow, $black, $black);
+		}
+		span {
+			font-family:$font-light;
+		}
+	}
+
+}
+
+
+.listings-footer {
+	@include clearfix;
+
+	@extend .tiles-footer;
+
+	margin-top:rhythm(2);
+	@include breakpoint($tablet){
+		@include span(10 of 11);
+		margin-top:rhythm(2);
+	}
+}
+
+.hover-image {
+	position:absolute;
+	display: block;
+	left:0;
+	top:0;
+	width:300px;
+	height:auto;
+	z-index:999;
+}

@@ -1,0 +1,42 @@
+.button {
+	font-family:$font-head;
+	position:relative;
+
+
+	&::after {
+		@include has-icon('>');
+		margin-left:.7rem;
+
+	}
+	&.no-arrow {
+		&::after {
+			display: none;
+		}
+	}
+	&.is-ltr {
+		&::before {	
+			line-height:1;
+			@include has-icon('<');
+			margin-right:.7rem;
+		}
+		&::after {
+			display: none;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		&::after {
+			
+		}
+	}
+	&.is-m {
+		@include adjust-font-size-to($font-m);
+	}
+	&.is-l {
+		@include adjust-font-size-to($font-l);
+	}
+	&.is-xl {
+		@include adjust-font-size-to($font-xl);
+	}
+}

@@ -1,0 +1,71 @@
+.site-footer {
+
+	&.is-padded {
+		padding-bottom:rhythm(1);
+		@include breakpoint($tablet){
+			padding-bottom:rhythm(2);
+		}
+	}
+	
+	.footer-widgets {
+		@include span(10);
+		@include pre(1);
+
+		header {
+			display: block;
+			text-align:center;
+			@include fs($font-l);
+			@include ld(1.5,$font-l);
+			font-family:$font-head;
+		}
+
+		.widget {
+			margin-bottom:rhythm(2);
+			&:last-of-type {
+				// margin-bottom:0;
+			}
+		}
+
+		.textwidget {
+			font-family:$font-light;
+		}
+		
+		.widget-logos {
+			display:flex;
+			
+			justify-content:center;
+			flex-wrap:wrap;
+
+			@include breakpoint($tablet){
+				flex-wrap: nowrap;
+			}
+			
+			.widget-logo-item {
+				
+				margin:.75rem;
+				@include breakpoint($tablet){
+					margin:0 gutter(10);
+				}
+				img {
+					height:3rem;
+				}
+			}
+
+		}
+
+	}
+
+	.credits {
+		@include span(10);
+		@include pre(1);
+
+		p {
+			@include fs($font-s);
+			font-family:$font-light;
+			text-align:center;
+			margin:0;
+		}
+	}
+
+
+}

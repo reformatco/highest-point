@@ -1,0 +1,62 @@
+.module-article {
+
+	.row {
+		&.is-flex {
+			justify-content:center;
+		}
+	}
+
+}
+
+.article-content {
+
+	@include breakpoint($tablet){
+		width:span(6);
+	}
+
+	img {
+		height:auto;
+	}
+
+	p {
+		width:100%;
+		font-weight:100;
+	}
+
+}
+
+.error404 {
+	.module-article {
+		min-height:75vh;
+	}
+}
+
+.post-navbar {
+	@extend .artist-navbar;
+}
+
+.article-wrap {
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	
+	.article-content {
+		@include breakpoint($tablet){
+			order:2;
+		}
+	}
+	.article-navbar {
+		@include breakpoint($tablet){
+			order:1;
+			width:span(6);
+		}
+	}
+}
+
+.entry-content-asset {
+	margin:rhythm() 0;
+	iframe {
+		width:100% !important;
+	}
+}

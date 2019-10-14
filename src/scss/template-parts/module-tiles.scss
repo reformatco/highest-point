@@ -1,0 +1,189 @@
+.module-tiles {
+
+
+	.row {
+		
+	}
+
+	&:not(.tiles-flex){
+		.tiles {
+			@include clearfix;
+		}
+	}
+
+}
+
+.tiles-header,
+.tiles,
+.tiles-footer {
+	
+	
+
+	@include breakpoint($tablet){
+		@include span(10);
+		@include pre(1);
+	}
+}
+
+.tile {
+	@include span(12);
+	margin-bottom:rhythm(2);
+	@include breakpoint($tablet){
+		@include span(3 of 10);
+		margin-bottom:rhythm(2);
+	}
+}
+
+a.tile {
+	
+	img {
+		display: block;
+		z-index:1;
+	}
+	.tile-image {
+		display: block;
+		position: relative;
+		&:after {
+			content:"";
+			display: block;
+			width:100%;
+			height:100%;
+			position:absolute;
+			z-index:1;
+			background-color: $yellow;
+			opacity:0;
+			transition:opacity .3s;
+			top:0;
+			left:0;
+		}
+		&:hover,
+		&:focus {
+			&:after {
+				opacity: 0.7;
+			}
+		}
+	}
+
+}
+
+.bg-green {
+	a.tile {
+		.tile-title {
+			transition:all .3s;
+		}
+		&:hover,
+		&:focus {
+			.tile-title {
+				color:$yellow;
+			}
+		}
+	}
+}
+
+.tiles-default {
+	.tile {
+		@include breakpoint($tablet){
+			&:nth-child(4n+4){
+				@include pre(1 of 10);
+			}
+
+			&:nth-child(6n+6){
+				@include last;
+			}
+		}
+	}
+}
+
+.tiles-flex {
+	.tiles {
+		@include breakpoint($tablet){
+			display:flex;
+			flex-wrap:wrap;
+			justify-content: space-between;
+			@include span(9 last);
+			@include post(1);
+			@include pre(0);
+		}
+		.tile {
+			@include breakpoint($tablet){
+				float:none;
+				margin:0;
+				width:span(3 of 9);
+				margin-bottom:rhythm(2);
+			}
+		}
+	}
+}
+
+.tiles-row {
+	@include breakpoint($tablet){
+		@include span(10);
+		@include pre(1);
+	}
+
+	&:nth-child(even){
+		@include breakpoint($tablet){
+			display:flex;
+			justify-content:flex-end;
+			.tile {
+				&:last-of-type{
+					@include last;
+				}
+			}
+		}
+	}
+
+}
+
+.tiles-alt {
+
+	.tile {
+		@include breakpoint($tablet){
+			&:first-of-type {
+				@include pre(1 of 10);
+			}
+			&:nth-child(3),
+			&:nth-child(7){
+				@include last;
+			}
+			&:nth-child(5){
+				@include post(4 of 10);
+			}
+			&:nth-child(6){
+				@include pre(4 of 10);
+			}
+		}
+	}
+}
+
+.tile-title {
+	display: block;
+	// @include fs($font-m);
+	line-height:1.2;
+	// font-family: $font-head;
+	margin:0;
+	margin-top:1rem;
+}
+
+.tile-image {
+	margin:0 0 rhythm() 0;
+}
+
+.tile-body {
+	margin-top:rhythm(.5);
+}
+
+.tiles-for-content {
+	.tile-title {}
+}
+
+.tiles-footer {
+	@include breakpoint($tablet){
+		display:flex;
+		justify-content: flex-end;
+	}
+	a {
+		// @include fs($font-l);
+		margin-bottom:0;
+	}
+}

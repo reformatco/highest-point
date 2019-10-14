@@ -1,0 +1,140 @@
+/*
+
+Animations using https://scrollrevealjs.org/
+
+*/
+
+// html.sr .sr-fade {
+//     .hero-bg,
+//     .tiles,
+//     .intro,
+//     .half-image,
+//     .half-text,
+//     .article-content {
+//     	visibility: hidden;
+//     }
+// }
+
+
+@mixin generate-bg($class,$bg,$fg,$anchor:$fg){
+	.bg-#{$class}{
+		background-color: $bg !important;
+		* {
+			color:$fg;
+		}
+		a {
+			color:$anchor;
+			text-decoration: none;
+			transition:color .25s;
+			&:hover {
+				color:transparentize($anchor,0.5);
+			}
+		}
+		.wp-quote {
+			p {
+				color:$anchor !important;
+			}
+			border-color:$anchor !important;
+		}
+		.wp-quote-cite {
+			cite:before {
+				color:$anchor !important;
+			}
+			a {
+				color:$anchor !important;
+			}
+		}
+	}
+}
+
+@mixin is-padded {
+	padding-top:rhythm(2);
+	padding-bottom:rhythm(2);
+	@include breakpoint($tablet){
+		padding-top:rhythm(4);
+		padding-bottom:rhythm(4);
+	}
+}
+
+.module {
+
+	&.is-padded {
+		@include is-padded;
+	}
+
+
+
+	&.is-centred {
+		p {
+			text-align:center;
+		}
+	}
+
+}
+
+@mixin background-2x($path, $ext: "png", $repeat: no-repeat, $mobile : true) {
+ 
+	background-size: 100% auto;
+	background-position: top left;
+	background-repeat: $repeat;
+
+	@if $mobile == true {
+	
+		background-image: url("#{$path}-mobile.#{$ext}"); // non-retina mobile
+
+		@include breakpoint($retina){
+			background-image: url("#{$path}-mobile@2x.#{$ext}"); // hidpi mobile
+		}
+
+	}
+
+	@include breakpoint($tablet){
+		background-image: url("#{$path}.#{$ext}"); // non-retina tablet
+	}
+
+	@include breakpoint($retinaTablet){
+		background-image: url("#{$path}@2x.#{$ext}"); // hidpi tablet
+	}
+
+}
+
+
+/*
+
+Colour Modifiers
+
+*/
+
+@include generate-bg('white',$white,$black,$yellow);
+@include generate-bg('yellow',$yellow,$black);
+@include generate-bg('green',$green,$white,$yellow);
+@include generate-bg('orange',$orange,$white);
+@include generate-bg('black',$black,$white);
+
+$illustrations : (
+	module-newsletter : false,
+	module-content1 : false,
+	module-content2 : false,
+	module-content3 : false,
+	module-content4 : false,
+	module-content5 : false,
+	module-grid1 : false,
+	module-grid2 : false,
+	module-grid3 : false,
+	module-lineup : false
+	);
+
+@each $graphic, $mobile in $illustrations {
+	.bg-#{$graphic} {
+		@include background-2x('../img/illis/#{$graphic}','png',repeat-y, $mobile);
+	}
+}
+
+.bg-module-grid2 {
+	background-position:0 0;
+}
+
+// .bg-ill-01 {
+// 	@include background-2x('../img/illis/module-grid1','png',no-repeat,$retinaTablet);
+// }
+

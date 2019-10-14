@@ -1,0 +1,21 @@
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 87.59 87.59" enable-background="new 0 0 87.59 87.59" xml:space="preserve">
+<defs>
+	
+		<pattern  x="-206.2" y="27.8" width="1440.14" height="2165.91" patternUnits="userSpaceOnUse" id="Unnamed_Pattern" viewBox="0 -2165.91 1440.14 2165.91" overflow="visible">
+		<g>
+			<rect x="0" y="-2165.91" fill="none" width="1440.14" height="2165.91"/>
+			<rect x="0" y="-2165.91" fill="#ffffff" width="1440.14" height="2165.91"/>
+		</g>
+	</pattern>
+</defs>
+<pattern  id="SVGID_1_" xlink:href="#Unnamed_Pattern" patternTransform="matrix(1 0 0 1 1075.8983 123.3632)">
+</pattern>
+<circle fill="url(#SVGID_1_)" cx="43.8" cy="43.8" r="43.8"/>
+<path fill="#000000" d="M44.95,66.2V25.84c2.61-0.49,4.6-2.78,4.6-5.54c0-3.11-2.53-5.64-5.64-5.64c-3.11,0-5.64,2.53-5.64,5.64
+	c0,2.77,2.01,5.08,4.66,5.55V66.2c-2.31-3.33-6.06-5.53-10.38-5.53v2.02c5.77,0,10.35,4.59,10.35,10.24h2.02
+	c0-5.64,4.64-10.24,10.12-10.24v-2.02C51.01,60.67,47.26,62.87,44.95,66.2z M43.91,23.93c-0.34,0-0.67-0.05-0.98-0.14
+	c-1.52-0.43-2.64-1.83-2.64-3.48c0-2,1.63-3.62,3.62-3.62c2,0,3.62,1.62,3.62,3.62c0,1.64-1.09,3.02-2.58,3.47
+	C44.62,23.87,44.27,23.93,43.91,23.93z"/>
+<rect x="32.55" y="14.67" fill="none" width="22.49" height="58.26"/>
+</svg>

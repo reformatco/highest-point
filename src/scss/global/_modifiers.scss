@@ -1,0 +1,46 @@
+.is-fixed-height {
+	height:$moduleFixedHeightMobile;
+	@include tablet-only {
+		height:$moduleFixedHeightTablet;
+	}
+	@include desktop {
+		height:$moduleFixedHeightDesktop;
+	}
+}
+
+.is-full-height {
+	height:100vh;
+	// generally needs a calc(100vh - some height );
+}
+
+.is-fluid-height {
+
+	// can add a height in here based on an image aspect ratio
+
+	@include fluid-height(1,1);
+
+	@include breakpoint($tablet) {
+		@include fluid-height(1400,530);
+	}
+
+	.hero-body {
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%,-50%);
+	}
+
+}
+
+@each $name, $color in $colors {
+  .has-text-#{$name} {
+    color: $color !important;
+  }
+
+  .has-background-#{$name} {
+    background-color: $color !important;
+  }
+}
+
+// make a map of colour pairs
+// then make joint has-colourway class from pairs

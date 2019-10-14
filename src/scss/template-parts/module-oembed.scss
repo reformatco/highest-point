@@ -1,0 +1,23 @@
+.module-oembed {
+	
+	&.is-padded {
+		padding-bottom:rhythm(2);
+		@include breakpoint($tablet){
+			padding-bottom:rhythm(4);
+		}
+	}
+
+	position:relative;
+	overflow:hidden;
+
+	// &:before {
+	// 	content:"";
+	// 	display: block;
+	// 	width:100%;
+	// 	height:50%;
+	// 	position:absolute;
+	// 	bottom:0;
+	// 	background-color: $white;
+	// }
+
+}

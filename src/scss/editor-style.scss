@@ -1,0 +1,26 @@
+@import "compass";
+@import "susy";
+@import "breakpoint";
+
+@import "variables/*";
+@import "lib/normalize.scss";
+
+@import "global/__mixins.scss";
+@import "global/_buttons.scss";
+@import "global/_typography.scss";
+
+#tinymce {
+	
+	padding:rhythm() !important; 
+
+	@include body-styles;
+
+	a {
+		color:$yellow;
+	}
+
+	.button {
+		text-decoration:none;
+	}
+
+}

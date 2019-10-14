@@ -1,0 +1,42 @@
+
+html {
+	height:100%;
+	font-size:87.5%;
+
+
+	@include breakpoint($tablet){
+		font-size:87.5%;
+	}
+	@include breakpoint($desktop){
+		font-size:100%;
+	}
+	@include breakpoint($fullhd){
+		font-size:112.5%;
+	}
+}
+
+body {
+	font-family:$font-main;
+	color:$black;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;  
+  	font-weight:300;
+	
+	padding-top:75px;
+
+	@include breakpoint($desktop){
+		padding-top:4.8rem;
+	}
+
+	
+	// @include breakpoint($desktop){
+	// 	padding-top:80px;
+	// }
+	// @include breakpoint($fullhd){
+	// 	padding-top:86px;
+	// }
+}
+
+img {
+	max-width:100%;
+}

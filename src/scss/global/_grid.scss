@@ -1,0 +1,22 @@
+.wrap {
+	box-sizing: content-box;
+	padding:0 gutter();
+	@include clearfix;
+}
+
+.row {
+	padding:0 1.8rem;
+	@include breakpoint($desktop){
+		padding:0 gutter();
+	}
+	@include container;
+
+	&.is-flex {
+		display:flex;
+		justify-content:space-between;
+	}
+
+	// &.no-flex {
+	// 	@include container;
+	// }
+}

@@ -1,0 +1,49 @@
+.home {
+	.hero-bg {
+		img {
+			width:100%;
+			height:auto;
+		}
+		padding:0;
+		height:calc( 100vh - 97px );
+		@include breakpoint( $phoneLandscape ){
+			padding:0;
+			img {
+				height:100%;
+			}
+			height:calc( 100vh - 75px );
+		}
+		@include breakpoint($tablet){
+			height:auto;
+		}
+	}
+}
+
+.down-arrow {
+	position:fixed;
+	width:30px;
+	height:15px;
+	bottom:rhythm();
+	z-index:9999;
+	left:50%;
+	transform:translateX(-50%);
+	transition:all 250ms;
+	opacity:0;
+	visibility:hidden;
+	cursor:pointer;
+	
+	#down-arrow {
+		transition:all 250ms;
+	}
+
+	&:hover {
+		#down-arrow {
+			stroke:#ffffff;
+		}
+	}
+
+	&.active {
+		opacity:1;
+		visibility:visible;
+	}
+}

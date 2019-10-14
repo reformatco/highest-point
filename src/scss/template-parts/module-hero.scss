@@ -1,0 +1,142 @@
+.module-hero {
+
+	.row {
+		width:100%;
+	}
+
+	position:relative;
+	
+	@include breakpoint($tablet){
+		// background-size: cover;
+		// background-position: top left;
+		// background-repeat: no-repeat;
+		// background-image: url("../img/header-blank@2x.png");
+
+	}
+}
+
+.hero-bg {
+	img {
+		display: block;
+		margin:auto;
+	}
+
+	// height:0;
+	// padding-bottom:60%;
+	position:relative;
+	img {
+		width:100%;
+		height:auto;
+		// object-fit: cover;
+		// font-family: 'object-fit: cover;';
+		// position:absolute;
+		// z-index:2;
+	}
+
+	@include breakpoint($tablet){
+		height:auto;
+		padding-bottom:0;
+		// img {
+		// 	position:static;
+		// 	width: 100%;
+		// 	height:auto;
+		// 	object-fit:inherit;
+		// }
+	}
+}
+
+.hero-flex {
+	align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .hero-body {
+    	display: block;
+    }
+}
+
+.hero-body {
+	display: none;
+	text-align:center;
+	
+	.title {
+		@include fs($font-xxl);
+		margin:0;
+		h1 {
+			color:$black !important;
+		}
+	}
+}
+
+// .is-fixed-height
+
+.arrow-down {
+	cursor:pointer;
+	text-align:center;
+	
+
+	&:after {
+		@include has-icon('(');
+	}
+	
+	
+	width:rhythm(2);
+	position:absolute;
+	left:50%;
+	z-index:5;
+	transform:translateX(-50%);
+	@include animation(pulseDown, 1s, $timing-function: linear, $iteration-count: infinite, $direction: alternate);
+	@include fs(90px);
+	margin: 0;
+	bottom:10%;
+	// display: none; // not on mobile
+	@include breakpoint( $phoneLandscape ){
+		@include fs(24px);
+		margin-bottom: 0;
+		bottom:5%;
+	}
+	@include breakpoint($tablet){
+		display: block;
+		@include fs(48px);
+		margin-bottom: 0;
+		bottom:8%;
+	}
+	@include breakpoint(1025px){
+		@include fs($font-xl);
+		margin-bottom: 0;
+		bottom:7%;
+	}
+	
+}
+
+.bg-orange,
+.bg-yellow {
+	.arrow-down {
+		color:$black;
+	}
+}
+
+.bg-green {
+	.hero-body .title h1 {
+		color:$white !important;
+	}
+	.arrow-down {
+		color:$white;
+	}
+}
+
+.bg-black,
+.bg-green {
+	&.hero-no-image {
+		@include background-2x('../img/header-blank','png',no-repeat, false);
+	}
+}
+
+.bg-white,
+.bg-yellow,
+.bg-orange {
+	&.hero-no-image {
+		@include background-2x('../img/header-blank2','png',no-repeat, false);
+	}
+}

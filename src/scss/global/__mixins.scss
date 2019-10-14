@@ -1,0 +1,625 @@
+// ======================================
+// Mixins
+// ======================================
+
+
+
+/* Grid padding */
+
+@mixin grid-padding {
+	box-sizing: content-box;
+	padding:0 rhythm();
+	@include breakpoint($med){
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+}
+
+@mixin hide-text {
+ 	overflow: hidden;
+
+ 	&:before {
+ 		content: "";
+ 		display: block;
+ 		width: 0;
+ 		height: 100%;
+  }
+
+}
+
+
+@mixin load-font($title,$filename){
+  @font-face {
+    font-family: '#{$title}';
+    src: url('../webfonts/#{$filename}.eot'); /* IE9 Compat Modes */
+    src: url('../webfonts/#{$filename}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../webfonts/#{$filename}.woff') format('woff'), /* Modern Browsers */
+         url('../webfonts/#{$filename}.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../webfonts/#{$filename}.svg#font') format('svg'); /* Legacy iOS */
+    font-style: italic;
+    font-weight: normal;
+	text-rendering: optimizeLegibility;
+	font-display: swap;
+  }
+}
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+// overwrite susy box sizing
+
+// @mixin box-sizing($value) {
+//     -moz-box-sizing: $value;
+//          box-sizing: $value;
+// }
+
+@mixin clearfix {
+	*zoom: 1;
+
+	&:before,
+	&:after {
+	    content: "";
+	    display: table;
+	}
+	&:after {
+	    clear: both;
+	}
+}
+
+
+@mixin link ($colour, $bottom:0px, $hover:$colour, $width:1, $size: 1px) {
+  display: inline-block;
+  color:$colour;
+  position:relative;
+  text-decoration:none;
+  transition:all 250ms;
+  &:after {
+    content:"";
+    display: block;
+    position:absolute;
+    bottom:$bottom;
+    width:100%;
+    // transform: scaleX(0);
+    opacity:0;
+    border-bottom:$size solid $colour;
+    transition:all 250ms;
+    // transform-origin:left top;
+  }
+  &:hover {
+    color:$hover;
+    &:after{
+      // transform: scaleX($width);
+      opacity:1;
+    }
+  }
+}
+
+@mixin altLink ($colour, $hover:$colour, $size: 1px) {
+  display: inline-block;
+  color:$colour;
+  position:relative;
+  text-decoration:none;
+  transition:all 250ms;
+  &:after {
+    content:"";
+    display: block;
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    // transform: scaleX(0);
+    opacity:1;
+    border-bottom:$size solid $colour;
+    transition:all 250ms;
+    // transform-origin:left top;
+  }
+  &:hover {
+    // color:$hover;
+    &:after{
+      // transform: scaleX($width);
+      border-color:$hover;
+      opacity:1;
+    }
+  }
+}
+
+@mixin tracking( $tracking ){
+    letter-spacing: ( $tracking / 1000 ) * 1em;
+}
+
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      // font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+
+
+
+
+// Responsiveness
+
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $tablet - 1px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $tablet), print {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+    @content;
+  }
+}
+
+@mixin touch {
+  @media screen and (max-width: $desktop - 1px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop + 1px ) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @if $widescreen-enabled {
+    @media screen and (min-width: $desktop + 1px ) and (max-width: $widescreen - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin until-widescreen {
+  @if $widescreen-enabled {
+    @media screen and (max-width: $widescreen - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin widescreen {
+  @if $widescreen-enabled {
+    @media screen and (min-width: $widescreen) {
+      @content;
+    }
+  }
+}
+
+@mixin widescreen-only {
+  @if $widescreen-enabled and $fullhd-enabled {
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin until-fullhd {
+  @if $fullhd-enabled {
+    @media screen and (max-width: $fullhd - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin fullhd {
+  @if $fullhd-enabled {
+    @media screen and (min-width: $fullhd) {
+      @content;
+    }
+  }
+}
+
+
+@mixin animation($name, $duration, $timing-function: false, $delay: false, $iteration-count: false, $direction: false) {
+    @include experimental(animation-name, $name, -moz, -webkit, -o, -ms, not -khtml, official);
+    @include experimental(animation-duration, $duration, -moz, -webkit, -o, -ms, not -khtml, official);
+
+    @if $timing-function {
+        @include experimental(animation-timing-function, $timing-function, -moz, -webkit, -o, -ms, not -khtml, official);
+    }
+
+    @if $delay {
+        @include experimental(animation-delay, $delay, -moz, -webkit, -o, -ms, not -khtml, official);
+    }
+
+    @if $iteration-count {
+        @include experimental(animation-iteration-count, $iteration-count, -moz, -webkit, -o, -ms, not -khtml, official);
+    }
+
+    @if $direction {
+        @include experimental(animation-direction, $direction, -moz, -webkit, -o, -ms, not -khtml, official);
+    }
+}
+
+
+
+@mixin hamburger($dimensions, $height:1px) {
+  cursor: pointer;
+  display: block;
+  height: $dimensions;
+  position: relative;
+  width: $dimensions;
+
+  span {
+    background-color: currentColor;
+    display: block;
+    height: $height;
+    left: calc(50% - #{ ($dimensions / 4) });
+    position: absolute;
+    transform-origin: center;
+    transition-duration: $speed;
+    transition-property: background-color, opacity, transform;
+    transition-timing-function: $easing;
+    width: $dimensions / 2;
+
+    &:nth-child(1) {
+      top: calc(50% - 7px);
+    }
+
+    &:nth-child(2) {
+      top: calc(50% - 1px);
+    }
+
+    &:nth-child(3) {
+      top: calc(50% + 5px);
+    }
+  }
+
+  &:hover {
+    background-color: rgba(black, 0.05);
+  }
+
+  // Modifers
+  &.is-active {
+    span {
+      &:nth-child(1) {
+        top: calc(50% - 6px);
+        transform: translateY(5px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        top: calc(50% + 4px);
+        transform: translateY(-5px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+@mixin fluid-height($w,$h){
+
+  position:relative;
+  height:0;
+  padding-bottom:100% * ($h / $w);
+
+}
+
+
+
+// shortcut for font sizes
+
+@mixin fs( $to-size, $lines: auto, $from-size: $base-font-size ){
+  @include adjust-font-size-to($to-size, $lines, $from-size );
+  margin:0 0 rhythm( 1,$to-size ) 0;
+}
+
+@mixin ld( $lines, $font-size: $base-font-size ){
+  @include adjust-leading-to($lines, $font-size);
+}
+
+@function rem-calc($size, $base: $base-font-size) {
+  $remSize: $size / $base;
+  @return #{$remSize}rem;
+}
+
+// build headings
+
+@mixin headings {
+
+  // h1 {
+  //   @include fs( $font-xxl );
+  // }
+
+  // h2 {
+  //   @include fs( $font-xl );
+  // }
+
+  // h3 {
+  //   @include fs( $font-l );
+  // }
+
+  // h4 {
+  //   @include fs( $font-m );
+  // }
+
+  // h5 {
+  //   @include fs( $font-base );
+  // }
+
+  h1, h2, h3, h4, h5 {
+    font-size:1em;
+    font-weight:normal;
+    margin:0;
+  }
+
+}
+
+@mixin paragraphs {
+
+  p,
+  ol,
+  ul {
+    @include fs( $font-base );
+
+    &:last-of-type {
+      margin-bottom:0;
+    }
+  }
+
+}
+
+
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+
+@mixin loader($color:$grey-lighter) {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid $color;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 2em;
+  position: relative;
+  width: 2em;
+}
+
+%loader {
+  @include loader;
+}
+
+@mixin has-icon( $content : "" ){
+  content:$content;
+  font-family:$font-icon;
+  speak: none;
+}
+
+
+@mixin body-styles() {
+
+  h1, h2, h3, h4 {
+    font-weight:normal;
+    font-family:$font-head;
+  }
+
+  h1 {
+    @include fs($font-xl);
+  }
+
+  h2 {
+    @include fs($font-l);
+  }
+
+  h3 {
+    @include fs($font-m);
+  }
+
+  h4 {
+    @include fs($font-base);
+  }
+
+  p,
+  ul,
+  ol {
+    font-family:$font-sans;
+    @include fs($font-base);
+    a {
+      font-weight:700;
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    &.alignnone {
+      display: block;
+      margin-bottom:rhythm(2);
+    }
+  }
+
+  .wp-caption {
+    margin:0;
+
+    img {
+      display: block;
+    }
+    .wp-caption-text {
+      @include fs($font-s);
+      margin:.5rem 0 0 0;
+    }
+  }
+
+  .wp-smiley {
+
+  }
+
+  .wp-quote {
+    border-left:1px solid $black;
+    margin:rhythm(2) 0;
+    // background-color: $white-bis;
+    padding:0 rhythm();
+    blockquote {
+      margin:0;
+      p {
+        @include fs(23px); // font-m = 27
+        line-height:1.2;
+        font-family:$font-light;
+        &:last-of-type {
+          margin-bottom:0;
+        }
+      }
+    }
+  }
+
+  .wp-quote-cite {
+    margin-top:.5rem;
+    cite {
+      &:before {
+        content:"—";
+        margin-right:.5rem;
+      }
+      font-style:normal;
+      // font-family:$font-light;
+      font-family:$font-sans;
+      a {
+        color:$black;
+      }
+    }
+  }
+
+  blockquote.left {
+    width:50%;
+  }
+
+  blockquote.right {
+
+  }
+
+  strong {
+    font-weight:700;
+  }
+
+  .gallery dl {}
+  .gallery dt {}
+  .gallery dd {}
+  .gallery dl a {}
+  .gallery dl img {}
+  .gallery-caption {}
+
+  .size-full {}
+  .size-large {}
+  .size-medium {}
+  .size-thumbnail {}
+
+  .alignleft, img.alignleft {
+    float:left;
+    margin-right:rhythm();
+    margin-bottom:rhythm();
+    .wp-caption-text {
+      text-align:left;
+    }
+  }
+
+  .alignright, img.alignright {
+    float:right;
+    margin-left:rhythm();
+    margin-bottom:rhythm();
+    .wp-caption-text {
+      text-align:right;
+    }
+  }
+
+  .aligncenter, img.aligncenter {
+    display: block;
+    margin:rhythm() auto;
+    .wp-caption-text {
+      text-align:center;
+    }
+  }
+
+  .alignnone, img.alignnone {
+
+  }
+
+}

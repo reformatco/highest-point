@@ -1,0 +1,37 @@
+/* Compass vertical rhythm */
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+$round-to-nearest-half-line: true;
+$rhythm-unit: "rem";
+
+@include establish-baseline;
+
+/* Font sizes */
+
+$font-xxs: 	10px;
+$font-xs: 	12px;
+$font-s: 	14px;
+$font-base: $base-font-size;
+// $font-m: 	27px;
+$font-m: 	25px;
+	$font-m-s: 21px;
+$font-l: 	33px;
+$font-xl: 	60px;
+	$font-xl-s: 48px; // just used for manual override at mobile
+$font-xxl: 	130px;
+
+/* Font stacks */
+
+$font-head : 			'BelweStd-Medium', serif;
+$font-sans : 			'Open Sans', sans-serif;
+$font-condensed : 		'BelweStd-Condensed', serif;
+$font-light : 			'BelweStd-Light', serif;
+$font-icon : 			'HPIcons';
+
+$font-main: $font-sans;
+
+
+
+
+

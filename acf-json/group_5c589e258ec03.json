@@ -1,0 +1,46 @@
+{
+    "key": "group_5c589e258ec03",
+    "title": "Single - Artist",
+    "fields": [
+        {
+            "key": "field_5c589e3b92dee",
+            "label": "Featured Image Size",
+            "name": "image_size",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "artist": "Landscape",
+                "square": "Square"
+            },
+            "allow_null": 0,
+            "default_value": "artist",
+            "layout": "horizontal",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "artists"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1549311750
+}

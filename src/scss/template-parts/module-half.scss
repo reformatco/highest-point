@@ -1,0 +1,68 @@
+.module-5050 {
+
+	@include breakpoint($tablet){
+		display:flex;
+	}
+
+	&.is-flipped {
+		.half-text {
+			order:1;
+		}
+		.half-image {
+			order:2;
+		}
+	}
+
+}
+
+.half-image,
+.half-text {
+	@include breakpoint($tablet){
+		width:50%;
+	}
+}
+
+.half-image {
+	margin:0;
+	display: block;
+	@include breakpoint($tablet){
+		
+	}
+	img {
+		display: block;
+		width:100%;
+		height:auto;
+	}
+}
+
+.half-text {
+	position:relative;
+	@include breakpoint($tablet){
+		display:flex;
+		align-items:center;
+	}
+	article {
+		padding:15%;
+
+		@include breakpoint($tablet){
+			padding:0 15%;
+		}
+
+		.half-text-header {
+
+			@extend .title;
+			@include fluid-type($desktop, $fullhd, $font-l, $font-xl);
+
+			line-height:1;
+			margin-bottom:.5em; // multiple of vw calc
+		}
+
+		p {
+			@include fluid-type($desktop, $fullhd, 21px, $font-m);
+			font-family:$font-light;
+			&:last-of-type {
+				margin-bottom:0;
+			}
+		}
+	}
+}

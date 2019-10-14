@@ -1,0 +1,133 @@
+.module-artist {
+	padding-top:rhythm(1);
+	padding-bottom:rhythm(1);
+	@include breakpoint($tablet){
+		padding-top:rhythm(2);
+		padding-bottom:rhythm(2);
+	}
+}
+
+.artist-wrap {
+	display:flex;
+	flex-direction:column;
+
+	@include breakpoint($tablet){
+		@include span(10);
+		@include pre(1);
+	}
+}
+
+.artist-navbar {
+	width:100%;
+	margin-top:rhythm(2);
+
+	@include breakpoint($tablet){
+		order:1;
+		margin-top:0;
+		margin-bottom:rhythm(2);
+	}
+
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		display:flex;
+
+		li {
+			&:nth-child(even){
+				text-align:right;
+			}
+			flex:1;
+			// @include fs($font-l);
+			margin: 0;
+		}
+	}
+}
+
+.artist {
+	@include breakpoint($tablet){
+		order:2;
+	}
+	@include breakpoint($desktop){
+		display:flex;
+		justify-content: space-between;
+	}
+}
+
+.artist-photo {
+	margin:0;
+	margin-bottom:rhythm(2);
+
+	@include breakpoint($desktop){
+		width:span(6 of 10);
+		order:2;
+		margin-bottom:0;
+	}
+
+	figcaption {
+		@include fs($font-xs);
+		text-align:right;
+		margin:rhythm(0.25,$font-xs) 0 0 0;
+
+		img {
+			display: block;
+		}
+	}
+}
+
+.artist-bio {
+	@include breakpoint($desktop){
+		// width:span(3 of 10);
+		width:35%;
+		order:1;
+	}
+}
+
+.artist-header {
+	@include fs($font-xl);
+	font-family:$font-condensed;
+	margin-bottom:.5rem;
+
+	@include breakpoint($tablet){
+		margin-bottom:1rem;
+	}
+
+	.meta {
+		color:$yellow;
+		a {
+			text-decoration:underline;
+		}
+	}
+}
+
+.artist-share {
+	margin-top:rhythm();
+
+	display: flex;
+	align-items:center;
+
+	h2 {
+		font-family:$font-head;
+		@include fs($font-l);
+		margin: 0;
+		margin-right:.5rem;
+	}
+
+	.share-button {
+		@include adjust-font-size-to($font-m);
+		display: inline-block;
+		padding:0 .25rem;
+		cursor:pointer;
+		* {
+			color:$yellow !important;
+			transition:color .3s;
+		}
+		&:hover,
+		&:focus {
+			* {
+				color:$orange !important;
+			}
+		}
+	}
+}

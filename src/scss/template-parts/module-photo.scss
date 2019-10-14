@@ -1,0 +1,55 @@
+$photosizes : (
+	'base' : 300px,
+	'tablet' : 350px,
+	'desktop' : 425px,
+	'fullhd' : 425px
+);
+
+.module-photo {
+	
+	figure {
+		margin: 0;
+		padding: 0;
+	}
+
+	img {
+		width:100%;
+		height:rem-calc(200px);
+		display: block;
+		object-fit: cover;
+		font-family: 'object-fit: cover;';
+		@include breakpoint($tablet){
+			height:auto;
+		}
+	}
+
+
+
+}
+
+
+
+.photo-fixed {
+
+	img {
+		width:100%;
+		height:100%;
+		object-fit: cover;
+		font-family: 'object-fit: cover;';
+		height:map-get($photosizes,base);
+
+		@include breakpoint($tablet){
+			height:map-get($photosizes,tablet);
+		}
+		
+		@include breakpoint($desktop){
+			height:map-get($photosizes,desktop);
+		}
+
+		@include breakpoint($fullhd){
+			height:map-get($photosizes,fullhd);
+		}
+
+	}
+
+}

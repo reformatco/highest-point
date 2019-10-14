@@ -1,0 +1,34 @@
+.module-intro {
+
+	.row {
+		&.is-flex {
+			justify-content:center;
+		}
+	}
+
+	.social-icons {
+		margin-top:rhythm();
+	}
+
+}
+
+.intro {
+	@include breakpoint($tablet){
+		width:span(6);
+	}
+
+	p {
+		@include fs($font-m);
+		font-family: $font-head;
+		&:last-of-type {
+			margin-bottom:0;
+		}
+	
+		
+	}
+
+	h3 {
+		text-align:center;
+	}
+
+}

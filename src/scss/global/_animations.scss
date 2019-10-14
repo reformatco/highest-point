@@ -1,0 +1,18 @@
+@include keyframes(pulseRight) {
+    0%   { 
+    	transform:translateX(0); 
+    }
+    100% { 
+    	transform:translateX(10px); 
+    }
+}
+
+@include keyframes(pulseLeft) {
+    0%   { transform:translateX(0); }
+    100% { transform:translateX(-10px); }
+}
+
+@include keyframes(pulseDown) {
+    0%   { transform:translate(-50%,0); }
+    100% { transform:translate(-50%,10px); }
+}
